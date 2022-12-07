@@ -22,6 +22,7 @@ impl Robot {
         }
     }
 
+    #[must_use]
     pub fn turn_right(self) -> Self {
         Self {
             facing_direction: Self::next_direction(self.facing_direction, 1),
@@ -29,6 +30,7 @@ impl Robot {
         }
     }
 
+    #[must_use]
     pub fn turn_left(self) -> Self {
         Self {
             facing_direction: Self::next_direction(
@@ -39,6 +41,7 @@ impl Robot {
         }
     }
 
+    #[must_use]
     pub fn advance(self) -> Self {
         Self {
             position: add_position(&self.position, &self.advance_delta()),
@@ -46,6 +49,7 @@ impl Robot {
         }
     }
 
+    #[must_use]
     pub fn instructions(self, instructions: &str) -> Self {
         instructions
             .chars()
