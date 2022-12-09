@@ -5,7 +5,7 @@ pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
 
     for val in 2..=upper_iter {
         if candidates[val] {
-            (2..)
+            (val..)
                 .map_while(|index| {
                     let next_val = index * val;
                     (next_val <= upper_bound).then_some(next_val)
