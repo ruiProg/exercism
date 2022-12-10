@@ -18,7 +18,7 @@ fn word_capital_letters(word: &str) -> Option<String> {
     if !all_uppercase {
         let rest_letters = word[first_letter_index + 1..]
             .chars()
-            .filter(|ch| ch.is_alphabetic() && ch.is_uppercase())
+            .filter(|ch| ch.is_uppercase())
             .collect::<String>();
 
         Some(format!("{first_letter}{rest_letters}"))

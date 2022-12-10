@@ -1,7 +1,3 @@
-// This stub file contains items that aren't used yet; feel free to remove this module attribute
-// to enable stricter warnings.
-#![allow(unused)]
-
 const HOUR_RATE: f64 = 221.0;
 
 pub fn production_rate_per_hour(speed: u8) -> f64 {
