@@ -18,7 +18,7 @@ pub fn brackets_are_balanced(string: &str) -> bool {
             let Some(opening_bracket) = stack.pop() else {
                 return false;
             };
-            if !bracket_match(&bracket_pairs, opening_bracket, current_bracket) {
+            if bracket_pairs.get(&opening_bracket) != Some(&current_bracket) {
                 return false;
             };
         }
@@ -28,15 +28,4 @@ pub fn brackets_are_balanced(string: &str) -> bool {
 
 fn closing_bracket(bracket_pairs: &HashMap<char, char>, ch: char) -> Option<&char> {
     bracket_pairs.values().find(|&&bracket| bracket == ch)
-}
-
-fn bracket_match(
-    bracket_pairs: &HashMap<char, char>,
-    opening_bracket: char,
-    current_bracket: char,
-) -> bool {
-    bracket_pairs
-        .get(&opening_bracket)
-        .filter(|&&closing_bracket| current_bracket == closing_bracket)
-        .is_some()
 }

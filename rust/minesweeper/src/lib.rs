@@ -41,9 +41,8 @@ fn adjacent_mines_count(minefield: &[&str], row_index: usize, column_index: usiz
 }
 
 fn has_mine_at(minefield: &[&str], row_index: usize, column_index: usize) -> bool {
-    minefield
-        .get(row_index)
-        .and_then(|row| row.as_bytes().get(column_index))
-        .filter(|&&ch| ch == b'*')
-        .is_some()
+    Some(&b'*')
+        == minefield
+            .get(row_index)
+            .and_then(|row| row.as_bytes().get(column_index))
 }

@@ -5,10 +5,10 @@ pub fn answer(command: &str) -> Option<i32> {
 }
 
 fn expression(command: &str) -> Option<(i32, &str)> {
-    let (mut value, mut command) = identity(command)?;
+    let (mut value, mut command) = number(command)?;
 
     while let Some((operation, inner_command)) = find_operation(command) {
-        let (other_value, mut inner_command) = identity(inner_command)?;
+        let (other_value, mut inner_command) = number(inner_command)?;
         value = match operation {
             Operation::Addition => value.checked_add(other_value)?,
             Operation::Subtraction => value.checked_sub(other_value)?,
@@ -25,9 +25,9 @@ fn expression(command: &str) -> Option<(i32, &str)> {
     Some((value, command))
 }
 
-fn identity(command: &str) -> Option<(i32, &str)> {
-    let (number, rest) = split_at(command, |ch: char| !is_numeric_or_minus(ch))?;
-    (number.parse::<i32>()).map(|value| (value, rest)).ok()
+fn number(command: &str) -> Option<(i32, &str)> {
+    let (value, rest) = split_at(command, |ch: char| !is_numeric_or_minus(ch))?;
+    (value.parse::<i32>()).map(|value| (value, rest)).ok()
 }
 
 fn find_operation(command: &str) -> Option<(Operation, &str)> {
