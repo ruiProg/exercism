@@ -5,7 +5,10 @@ pub fn is_armstrong_number(num: u32) -> bool {
         .map(|rest| rest % 10)
         .collect();
     let num_digits = digits.len() as u32;
-    let transformed_num: u32 = digits.iter().map(|rest| rest.pow(num_digits)).sum();
+    let transformed_num = digits
+        .iter()
+        .map(|rest| rest.pow(num_digits))
+        .try_fold(0, u32::checked_add);
 
-    num == transformed_num
+    Some(num) == transformed_num
 }
